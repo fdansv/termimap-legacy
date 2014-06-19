@@ -48,4 +48,17 @@ public class Geocoder {
         }
         return null;
     }
+
+    private int getBoundingBoxZoomLevel(BoundingBox boundingBox){
+        int GLOBE_WIDTH = 256; // a constant in Google's map projection
+        double west = boundingBox.getW();
+        double east = boundingBox.getE();
+        double angle = east - west;
+        if (angle < 0) {
+            angle += 360;
+        }
+        int zoom = (int) Math.round(Math.log(512 * 360 / angle / GLOBE_WIDTH) / Math.log(2));
+
+        return zoom;
+    }
 }
