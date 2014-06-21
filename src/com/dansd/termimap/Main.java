@@ -35,12 +35,14 @@ public class Main {
     }
 
     private static void parsePlace(String input){
+        LatLng ll;
         if (input.contains(",")) {
             String[] parts = input.split(",");
-            TextMap tm = new TextMap(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]), 4);
+            ll = new LatLng(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
         } else {
-            LatLng ll = Geocoder.geocode(input);
-            TextMap tm = new TextMap(ll.lat, ll.lon, 5);
+            ll = Geocoder.geocode(input);
         }
+        TextMap tm = new TextMap(ll.lat, ll.lon, 5);
+        tm.printImage();
     }
 }
