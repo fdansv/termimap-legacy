@@ -10,9 +10,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
- * Created by Francisco Dans on 17/06/2014.
- */
+
 public class Geocoder {
     public static LatLng geocode(String place){
         String geocodingURL = "http://api.tiles.mapbox.com/v3/drivescribe.tm2-basemap/geocode/"+place+".json";
