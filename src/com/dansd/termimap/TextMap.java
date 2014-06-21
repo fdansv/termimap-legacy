@@ -28,18 +28,27 @@ public class TextMap {
             String line = "";
             for(int x=0; x<this.theImage.getWidth(); x = x+ reductionFactor/2){
                 Color average = this.getAverage(x, y);
-                if(average.getRed()>0) {
-                    line += " ";
+                if(average.getRed()>0 && average.getBlue()>0 &&average.getGreen()>0) {
+                    line += ANSI_BLACK+"\u2588";
+                }
+                else if(average.getRed()>0) {
+                    line += ANSI_BLUE+"\u2588";
                 }
                 else{
-                    line += "X";
+                    line += ANSI_YELLOW+"\u2588";
                 }
             }
             this.textedMap.add(line);
-            System.out.println(line);
 
         }
         theImage.getHeight();
+    }
+
+    public void printImage(){
+        for(String line:textedMap){
+            System.out.println(line);
+        }
+        System.out.println(ANSI_RESET); //resets the console color
     }
 
     private Color getAverage(int _x, int _y) {
