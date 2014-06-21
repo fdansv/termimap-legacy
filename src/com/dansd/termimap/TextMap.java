@@ -79,4 +79,28 @@ public class TextMap {
             ytile=((1<<zoom)-1);
         return("" + zoom + "/" + xtile + "/" + ytile);
     }
+
+    private void putOnTheRight(BufferedImage secondImage){
+        int offset  = 0;
+        int wid = theImage.getWidth()+secondImage.getWidth()+offset;
+        int height = Math.max(theImage.getHeight(),secondImage.getHeight())+offset;
+        //create a new buffer and draw two image into the new image
+        BufferedImage newImage = new BufferedImage(wid,height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = newImage.createGraphics();
+        Color oldColor = g2.getColor();
+        //fill background
+        g2.setPaint(Color.WHITE);
+        g2.fillRect(0, 0, wid, height);
+        //draw image
+        g2.setColor(oldColor);
+        g2.drawImage(theImage, null, 0, 0);
+        g2.drawImage(secondImage, null, theImage.getWidth()+offset, 0);
+        g2.dispose();
+        theImage = newImage;
+    }
+
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
 }
