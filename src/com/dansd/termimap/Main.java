@@ -26,7 +26,7 @@ public class Main {
                     newMode=true;
                 }
                 else if(input.equals("Q")){
-                    break;
+                    System.exit(0);
                 }
             }
 
