@@ -43,6 +43,6 @@ public class Main {
             ll = Geocoder.geocode(input);
         }
         TextMap tm = new TextMap(ll.lat, ll.lon, 5);
-        tm.printImage();
+        tm.printImageOld();
     }
 }

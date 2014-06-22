@@ -12,6 +12,7 @@ public class TextMap {
     ArrayList<String> textedMap = new ArrayList<String>();
     static int reductionFactor = 8;
     private BufferedImage theImage;
+    private boolean oldMode;
 
     public TextMap(double lat, double lon, int zoom){
         try {
@@ -46,9 +47,28 @@ public class TextMap {
 
     public void printImage(){
         for(String line:textedMap){
-            System.out.println(line);
+
+            if(oldMode){
+                for (int i = 0; i < line.length(); i++) {
+                    System.out.print(line.charAt(i));
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println();
+            }
+            else{
+                System.out.println(line);
+            }
         }
         System.out.println(ANSI_RESET); //resets the console color
+    }
+
+    public void printImageOld(){
+        oldMode = true;
+        printImage();
     }
 
     private Color getAverage(int _x, int _y) {
