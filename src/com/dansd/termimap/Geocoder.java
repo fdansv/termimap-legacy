@@ -14,10 +14,10 @@ import java.net.URL;
 public class Geocoder {
     public static LatLng geocode(String place){
         String geocodingURL = "http://api.tiles.mapbox.com/v3/drivescribe.tm2-basemap/geocode/"+place+".json";
-        JSONObject json = (JSONObject) JSONValue.parse(readUrl(geocodingURL));
-        JSONArray mainResult = (JSONArray) ((JSONArray) (json.get("results"))).get(0);
-        JSONObject mainObject = (JSONObject) mainResult.get(0);
-        return new LatLng((Double)mainObject.get("lat"), (Double)mainObject.get("lon"));
+        GeocoderResults geocoderResults = new GeocoderResults(geocodingURL);
+        
+        return geocoderResults.getResultList().get(0).getCoordinates();  // This is really shitty. Done in like 2 sec.
+                                                                         // Needs a prompt for the user to refine search
     }
 
     private static String readUrl(String urlString) {
