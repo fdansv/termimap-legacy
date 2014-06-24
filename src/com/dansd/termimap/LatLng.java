@@ -15,4 +15,12 @@ public class LatLng {
     public String toString(){
         return lat+","+lon;
     }
+
+    public Double getLatitude() {
+        return lat;
+    }
+
+    public Double getLongitude() {
+        return lon;
+    }
 }
